@@ -1,172 +1,157 @@
-// src/components/CryptoForm.jsx
-
 import React, { useState } from 'react';
-import { ethers } from 'ethers';
 import axios from 'axios';
+import { ethers } from 'ethers';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CryptoForm = () => {
-  const [crypto1, setCrypto1] = useState('Fuji');
-  const [crypto2, setCrypto2] = useState('Holsky');
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [sendingFrom, setSendingFrom] = useState({ tokenAddress: "0x5c2c6ab36a6e4e160fb9c529e164b7781f7d255f", chainId: "17000", name: "Fuji", tokenName: "" });
-  const [sendingTo, setSendingTo] = useState({ tokenAddress: "0x69dc97bb33e9030533ca2006ab4cef67f4db4125", chainId: "43113", name: "Holsky", tokenName: "" });
-  const [account, setAccount] = useState('Connect Wallet')
-  const [quoteData, setQuoteData] = useState('')
+    const [crypto1, setCrypto1] = useState('Fuji');
+    const [crypto2, setCrypto2] = useState('Matic');
+    const [input1, setInput1] = useState('');
+    const [input2, setInput2] = useState('');
+    const [account, setAccount] = useState('Connect Wallet');
+    const [quoteData, setQuoteData] = useState(null);
+    const [step1, setStep1] = useState('');
+    const [step2, setStep2] = useState('');
+    const [step3, setStep3] = useState('');
 
-  const tokenDetailsList = [
-    { tokenAddress: "0x5c2c6ab36a6e4e160fb9c529e164b7781f7d255f", chainId: "17000", name: "Fuji", tokenName: "" },
-    { tokenAddress: "0x69dc97bb33e9030533ca2006ab4cef67f4db4125", chainId: "43113", name: "Holsky", tokenName: "" },
-  ]
-  const PATH_FINDER_API_URL = "https://api.pf.testnet.routerprotocol.com/api"
-  // Makes an HTTP GET Request to the Nitro Pathfinder API
-  // quote data, which typically includes details about the token transfer, 
-  // such as source and destination chains, token amount, fees, and other relevant information.
-  const getQuote = async (params) => {
-    const endpoint = "v2/quote"
-    const quoteUrl = `${PATH_FINDER_API_URL}/${endpoint}`
-
-    console.log(quoteUrl)
-
-    try {
-      const res = await axios.get(quoteUrl, { params })
-      return res.data;
-    } catch (e) {
-      console.error(`Fetching quote data from pathfinder: ${e}`)
-    }
-  }
-
-  const getTransaction = async (params, quoteData) => {
-    const endpoint = "v2/transaction"
-    const txDataUrl = `${PATH_FINDER_API_URL}/${endpoint}`
-
-    console.log(txDataUrl)
-
-    try {
-      const res = await axios.post(txDataUrl, {
-        ...quoteData,
-        // fromTokenAddress: params.fromTokenAddress,
-        // toTokenAddress: params.toTokenAddress,
-        slippageTolerance: 0.5,
-        senderAddress: account,
-        receiverAddress: account,
-        // widgetId: params.widgetId
-      })
-      return res.data;
-    } catch (e) {
-      console.error(`Fetching tx data from pathfinder: ${e}`)
-    }
-  }
-  return (
-    <div>
-      <div>
-        <label htmlFor="crypto1">Select Cryptocurrency 1:</label>
-        <select id="crypto1" value={crypto1} onChange={(e) => {
-          const new_val = tokenDetailsList.filter((eachItem) => eachItem.name === e.target.value)
-          setCrypto1(new_val[0].name)
-          setSendingFrom(new_val[0]);
-        }}>
-          {tokenDetailsList.map((eachItem, index) => {
-            return <option value={eachItem.name} key={index}>{eachItem.name}</option>
-          })}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="input1">Input 1:</label>
-        <input
-          id="input1"
-          type="text"
-          value={input1}
-          onChange={(e) => setInput1(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="crypto2">Select Cryptocurrency 2:</label>
-        <select id="crypto2" value={crypto2} onChange={(e) => {
-
-          const new_val = tokenDetailsList.filter((eachItem) => eachItem.name === e.target.value)
-          setCrypto2(new_val[0].name)
-          setSendingTo(new_val[0]);
-          // console.log("new value -> " , new_val)
-        }}>
-          {tokenDetailsList.map((eachItem, index) => {
-            return <option value={eachItem.name} key={index}>{eachItem.name}</option>
-          })}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="input2">Input 2:</label>
-        <input
-          id="input2"
-          type="text"
-          value={input2}
-          onChange={(e) => setInput2(e.target.value)}
-        />
-      </div>
-      <button className="button-51" onClick={async () => {
-
-        const params = {
-          'fromTokenAddress': sendingFrom.tokenAddress,
-          'toTokenAddress': sendingTo.tokenAddress,
-          'amount': input1,
-          'fromTokenChainId': sendingFrom.chainId,
-          'toTokenChainId': sendingTo.chainId, // Fuji
-          'partnerId': "0",
-          // 'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
+    const tokenDetails = {
+        'Fuji': {
+            address: "0xb452b513552aa0B57c4b1C9372eFEa78024e5936",
+            chainId: "43113",
+        },
+        'Matic': {
+            address: "0x22bAA8b6cdd31a0C5D1035d6e72043f4Ce6aF054",
+            chainId: "80001",
         }
+    };
 
-        const quoteData = await getQuote(params);
-        setQuoteData(quoteData)
-        alert(quoteData.allowanceTo)
+    const PATH_FINDER_API_URL = "https://api.pf.testnet.routerprotocol.com/api";
 
-        console.log(quoteData)
-      }}>Step 1: Get Quote</button>
+    const ERC20_ABI = [
+        "function approve(address spender, uint256 amount) public returns (bool)",
+        "function allowance(address owner, address spender) public view returns (uint256)"
+    ];
 
-      <button onClick={async () => {
+    const connectWallet = async () => {
         if (window.ethereum) {
-          console.log('detected');
-
-
-          //pop up metamask
-          try {
-            const accounts = await window.ethereum.request({
-              method: "eth_requestAccounts",
-            });
-
-            console.log(accounts[0])
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-
-
-
-            const txResponse = await getTransaction({
-              'fromTokenAddress': sendingFrom.tokenAddress,
-              'toTokenAddress': sendingTo.tokenAddress,
-              'fromTokenChainId': sendingFrom.chainId,
-              'toTokenChainId': sendingTo.chainId, // Fuji
-
-              'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
-            }, quoteData); // params have been defined in step 1 and quoteData has also been fetched in step 1
-
-            // sending the transaction using the data given by the pathfinder
-            const tx = await signer.sendTransaction(txResponse.txn)
             try {
-              await tx.wait();
-              console.log(`Transaction mined successfully: ${tx.hash}`)
-              alert(`Transaction mined successfully: ${tx.hash}`)
-              setStep3('✅')
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                setAccount(accounts[0]);
+            } catch (error) {
+                console.error("Could not connect to wallet:", error);
+                alert('Failed to connect wallet');
             }
-            catch (error) {
-              console.log(`Transaction failed with error: ${error}`)
-            }
-          }
-          catch (err) {
-            console.log(err)
-          }
+        } else {
+            alert("Please install MetaMask!");
         }
-      }}>Submit</button>
-    </div>
-  );
+    };
+
+    const getQuote = async (amount) => {
+        const from = "0x22bAA8b6cdd31a0C5D1035d6e72043f4Ce6aF054";
+        const to = "0xb452b513552aa0B57c4b1C9372eFEa78024e5936";
+        const params = {
+            'fromTokenAddress': account,
+            'toTokenAddress': to,
+            'amount': amount,
+            'fromTokenChainId': "80001",
+            'toTokenChainId': "43113", // Fuji
+            'partnerId': "0",
+        }
+        console.log("params ->", params)
+        const endpoint = "v2/quote";
+        const quoteUrl = `${PATH_FINDER_API_URL}/${endpoint}`;
+
+        try {
+            const response = await axios.get(quoteUrl, { params });
+            setQuoteData(response.data);
+            setInput2(response.data.amountTo.toString());
+            setStep1('✅');
+        } catch (error) {
+            console.error("Error fetching quote data:", error);
+            setInput2('Error fetching data');
+        }
+    };
+
+    const checkAndSetAllowance = async () => {
+        if (!window.ethereum) return;
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const token = new ethers.Contract(tokenDetails[crypto1].address, ERC20_ABI, signer);
+        const allowance = await token.allowance(account, quoteData.allowanceTo);
+
+        if (allowance.lt(ethers.BigNumber.from(input1))) {
+            const tx = await token.approve(quoteData.allowanceTo, ethers.constants.MaxUint256);
+            await tx.wait();
+            setStep2('✅ Approved');
+        } else {
+            setStep2('✅ Already approved');
+        }
+    };
+
+    const executeTransaction = async () => {
+        if (!window.ethereum || !quoteData) return;
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const tx = await signer.sendTransaction({
+            to: quoteData.to,
+            from: quoteData.from,
+            value: quoteData.value,
+        });
+
+        const receipt = await tx.wait();
+        console.log(`Transaction successful: ${receipt.transactionHash}`);
+        setStep3('✅ Transaction successful');
+    };
+
+    const handleInput1Change = (e) => {
+        const amount = e.target.value;
+        setInput1(amount);
+        if (amount.trim() !== '') {
+            getQuote(amount);
+        } else {
+            setInput2('');
+        }
+    };
+
+    return (
+        <div className="container mt-5">
+            <div className="card">
+
+                <div className="card-body">
+                    <button className="btn btn-primary mb-3" onClick={connectWallet}>
+                        {account === 'Connect Wallet' ? 'Connect Wallet' : 'Connected: ' + account.substring(0, 6) + '...' + account.substring(38)}
+                    </button>
+                    <div className="form-group">
+                        <label>Select Source Cryptocurrency:</label>
+                        <select className="form-control" value={crypto1} onChange={(e) => setCrypto1(e.target.value)}>
+                            <option value="Fuji">Fuji</option>
+                            <option value="Matic">Matic</option>
+                        </select>
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Select Destination Cryptocurrency:</label>
+                        <select className="form-control" value={crypto2} onChange={(e) => setCrypto2(e.target.value)}>
+                            <option value="Fuji">Fuji</option>
+                            <option value="Matic">Matic</option>
+                        </select>
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Input Amount:</label>
+                        <input className="form-control" type="text" value={input1} onChange={handleInput1Change} />
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Converted Amount:</label>
+                        <input className="form-control" type="text" value={input2} readOnly />
+                    </div>
+                    <button className="btn btn-success mt-3" onClick={() => { getQuote(input1) }}>Get Quote {step1}</button>
+                    <button className="btn btn-warning mt-3" onClick={checkAndSetAllowance}>Check Allowance {step2}</button>
+                    <button className="btn btn-danger mt-3" onClick={executeTransaction}>Execute {step3}</button>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default CryptoForm;
