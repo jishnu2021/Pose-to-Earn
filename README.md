@@ -46,6 +46,27 @@ npm start
 
 This will launch the Pose-To-Earn platform on http://localhost:3000.
 
+## Demonstration
+
+Pose Detection - Push Up
+
+
+https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6b6363e2-64c6-4571-a6b2-b71722345bcb
+
+Pose Detection - Situps
+
+
+https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/cb06cd31-384b-4bc5-9035-8e9e3f636f1b
+
+Pose Detection - Pull Ups
+
+
+https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6c7563db-a04a-4920-9cf3-f2b7e7a50eaa
+
+Avalanche Contract Address
+
+![contract address](https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/521e45fa-9c3d-4706-a8af-71d40a58544d)
+
 ## Contributing
 
 Contributions to the Pose-To-Earn project are welcome! We encourage community involvement and contribution to our repository. Please refer to the CONTRIBUTING.md file for more detailed instructions on how you can submit pull requests or report issues.
