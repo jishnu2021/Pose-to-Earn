@@ -32,6 +32,9 @@ while cap.isOpened():
 
     cv2.imshow('Pull-up Counter', img)
 
+    if count == 10:
+        print('Task Complete')
+
     if cv2.waitKey(10) & 0xFF == ord('q'):
         break
 
