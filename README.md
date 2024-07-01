@@ -8,6 +8,8 @@ Welcome to the Pose-To-Earn application, an innovative web platform where fitnes
 
 Pose-To-Earn offers a unique approach to staying fit and motivated by integrating exercise with blockchain technology. Users enroll in quests consisting of specific exercises. Achieving the targets for these exercises allows users to complete tasks and earn points. Accumulated points can be redeemed for NFTs minted on the Avalanche blockchain on the Fuji testnet.
 
+Contract Address of Avlanche - 0xB9bE3C9C0869c0b9C084eA6e33FBBAe599F820e6
+
 [Router Cross-Chain-wallet](https://github.com/Mochoye/AI-Fitness-Trainer/tree/main/extension/Cross-chain-wallet)
 
 ## Features
