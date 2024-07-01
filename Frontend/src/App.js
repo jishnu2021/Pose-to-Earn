@@ -3,23 +3,27 @@ import Navbar from './component/Navbar'
 import Home from './component/Home'
 import Task from './component/Task'
 import Introduction from './component/Introduction'
-import { SignInContainer } from './component/logout'
 import { BrowserRouter, Route , Routes} from 'react-router-dom'
+import Form from './component/Form';
 
 
 
 const App = () => {
   return (
+    <BrowserRouter>
     <div>
       <Navbar/>
-      <BrowserRouter>
+      
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='task' element={<Task/>}/>
         <Route path='intro' element={<Introduction/>}/>
+        <Route path='contact' element={<Form/>}/>
+        
       </Routes>
-      </BrowserRouter> 
+      
     </div>
+    </BrowserRouter> 
   )
 }
 
