@@ -8,9 +8,15 @@ Welcome to the Pose-To-Earn application, an innovative web platform where fitnes
 
 Pose-To-Earn offers a unique approach to staying fit and motivated by integrating exercise with blockchain technology. Users enroll in quests consisting of specific exercises. Achieving the targets for these exercises allows users to complete tasks and earn points. Accumulated points can be redeemed for NFTs minted on the Avalanche blockchain on the Fuji testnet.
 
+**_Note_** :-
+
 Contract Address of Avlanche - 0xB9bE3C9C0869c0b9C084eA6e33FBBAe599F820e6
 
-[Router Cross-Chain-wallet](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions)
+
+
+
+
+If the version [Router Cross-Chain-wallet V1.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions) do not work please try out the [Router Cross-Chain-wallet V2.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/extension) .
 
 ## Features
 
@@ -76,6 +82,8 @@ https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6c7563db-a04a-4920
 **Cross Chain Wallet Using Router Nitro**
 
 ![Capture](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/dedab2fb-82d4-4e19-9827-567ebd8ca328)
+
+
 
 
 
