@@ -54,24 +54,30 @@ This will launch the Pose-To-Earn platform on http://localhost:3000.
 
 ## Demonstration
 
-Pose Detection - Push Up
+**Pose Detection - Push Up**
 
 
 https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6b6363e2-64c6-4571-a6b2-b71722345bcb
 
-Pose Detection - Situps
+**Pose Detection - Situps**
 
 
 https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/cb06cd31-384b-4bc5-9035-8e9e3f636f1b
 
-Pose Detection - Pull Ups
+**Pose Detection - Pull Ups**
 
 
 https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6c7563db-a04a-4920-9cf3-f2b7e7a50eaa
 
-Avalanche Contract Address
+**Avalanche Contract Address**
 
 ![contract address](https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/521e45fa-9c3d-4706-a8af-71d40a58544d)
+
+**Cross Chain Wallet Using Router Nitro**
+
+![WhatsApp Image 2024-06-30 at 7 51 33 AM](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/dd8c2d33-07ca-4b59-a63a-f4f825782ae6)
+![WhatsApp Image 2024-06-30 at 7 50 40 AM](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/6360d1ba-8770-46d1-9da7-642e88058cbe)
+
 
 ## Contributing
 
