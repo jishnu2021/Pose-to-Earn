@@ -54,7 +54,7 @@ npm install
 To run the application locally:
 
 ```
-npm start
+npm run dev
 ```
 
 This will launch the Pose-To-Earn platform on http://localhost:5713.
