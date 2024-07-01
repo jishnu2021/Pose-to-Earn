@@ -10,7 +10,7 @@ Pose-To-Earn offers a unique approach to staying fit and motivated by integratin
 
 Contract Address of Avlanche - 0xB9bE3C9C0869c0b9C084eA6e33FBBAe599F820e6
 
-[Router Cross-Chain-wallet]([https://github.com/Mochoye/AI-Fitness-Trainer/tree/main/extension/Cross-chain-wallet](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions])
+[Router Cross-Chain-wallet](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions)
 
 ## Features
 
