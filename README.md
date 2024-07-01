@@ -75,8 +75,8 @@ https://github.com/Mochoye/AI-Fitness-Trainer/assets/95351969/6c7563db-a04a-4920
 
 **Cross Chain Wallet Using Router Nitro**
 
-![WhatsApp Image 2024-06-30 at 7 51 33 AM](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/dd8c2d33-07ca-4b59-a63a-f4f825782ae6)
-![WhatsApp Image 2024-06-30 at 7 50 40 AM](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/6360d1ba-8770-46d1-9da7-642e88058cbe)
+![Capture](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/dedab2fb-82d4-4e19-9827-567ebd8ca328)
+
 
 
 ## Contributing
