@@ -50,13 +50,21 @@ npm install
 
 ## Running the Application
 
+
 To run the application locally:
 
 ```
 npm start
 ```
 
-This will launch the Pose-To-Earn platform on http://localhost:3000.
+This will launch the Pose-To-Earn platform on http://localhost:5713.
+
+To run the Computer Vision Pose Detection model (In Backend/AI):
+
+```
+python3 <FileName>
+```
+
 
 ## Demonstration
 
