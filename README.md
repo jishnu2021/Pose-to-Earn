@@ -2,6 +2,8 @@
 
 Welcome to the Pose-To-Earn application, an innovative web platform where fitness meets the blockchain. Engage in various physical quests, achieve exercise targets, and earn rewards in the form of Non-Fungible Tokens (NFTs).
 
+![Screenshot 2024-06-30 082737](https://github.com/Mochoye/Pose-to-Earn/assets/95351969/eecc56cd-9d5f-4b2e-86f5-94e4e270b405)
+
 ## Overview
 
 Pose-To-Earn offers a unique approach to staying fit and motivated by integrating exercise with blockchain technology. Users enroll in quests consisting of specific exercises. Achieving the targets for these exercises allows users to complete tasks and earn points. Accumulated points can be redeemed for NFTs minted on the Avalanche blockchain on the Fuji testnet.
