@@ -6,9 +6,9 @@
     "permissions": [
       "storage",
       "activeTab",
-      "webRequest",
-      "webRequestBlocking",
-      "https://*/*"
+      "webRequest"
+      
+      
     ],
     "background": {
       "service_worker": "background.js"
@@ -33,4 +33,5 @@
       }
     ]
   }
+  
   
