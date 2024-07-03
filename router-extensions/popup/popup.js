@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const signer = provider.getSigner();
   
         const contract1 = new ethers.Contract(
-          "0x2Ef1C802355c500A3493F2Db8cB9C24AF12c42B0",
+          "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
           erc20_abi,
           provider1
         );
@@ -734,7 +734,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const amount = document.getElementById('amount').value * Math.pow(10, 18);
       const params = {
         'fromTokenAddress': "0x69dc97bb33e9030533ca2006ab4cef67f4db4125",
-        'toTokenAddress': "0x2Ef1C802355c500A3493F2Db8cB9C24AF12c42B0",
+        'toTokenAddress': "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
         'amount': amount,
         'fromTokenChainId': "43113",
         'toTokenChainId': "8002",
@@ -813,7 +813,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
           const txResponse = await getTransaction({
             'fromTokenAddress': "0x69dc97bb33e9030533ca2006ab4cef67f4db4125",
-            'toTokenAddress': "0x2Ef1C802355c500A3493F2Db8cB9C24AF12c42B0",
+            'toTokenAddress': "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
             'fromTokenChainId': "43113",
             'toTokenChainId': "8002",
             'widgetId': 0,
