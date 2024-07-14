@@ -1,10 +1,11 @@
 import React from 'react'
-
+import img2 from "../images/img.png"
+import { useNavigate } from 'react-router-dom'
 const Profile = () => {
+    const navigate = useNavigate();
   return (
     <>
-      <>
-  <button
+      <button
     data-drawer-target="separator-sidebar"
     data-drawer-toggle="separator-sidebar"
     aria-controls="separator-sidebar"
@@ -48,7 +49,7 @@ const Profile = () => {
               <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
               <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
             </svg>
-            <span className="ms-3">Dashboard</span>
+            <span className="ms-3" onClick={()=>navigate("/")}>Dashboard</span>
           </a>
         </li>
         <li>
@@ -65,7 +66,7 @@ const Profile = () => {
             >
               <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
             </svg>
-            <span className="flex-1 ms-3 whitespace-nowrap">Kanban</span>
+            
             <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
               Pro
             </span>
@@ -245,61 +246,13 @@ const Profile = () => {
     <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <div className="grid grid-cols-3 gap-4 mb-4">
         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              className="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
+
         </div>
         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              className="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
+         
         </div>
         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              className="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
+          
         </div>
       </div>
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -357,7 +310,7 @@ const Profile = () => {
   <div className="flex flex-col items-center pb-10">
     <img
       className="w-24 h-24 mb-3 rounded-full shadow-lg"
-      src="/docs/images/people/profile-picture-3.jpg"
+      src={img2}
       alt="Bonnie image"
     />
     <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
@@ -368,10 +321,10 @@ const Profile = () => {
     </span>
     <div className="flex mt-4 md:mt-6">
       <a
-        href="#"
+        href="/nft"
         className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
-        Add friend
+        View points
       </a>
       <a
         href="#"
@@ -498,7 +451,7 @@ const Profile = () => {
           </div>
         </th>
         <th scope="col" className="px-6 py-3">
-          Name
+          Days
         </th>
         <th scope="col" className="px-6 py-3">
           Position
@@ -650,7 +603,7 @@ const Profile = () => {
 
           <div className="ps-3">
           
-            <div className="text-base font-semibold">Task 4</div>
+            <div className="font-normal text-gray-500">Task 4</div>
             
           </div>
         </th>
@@ -672,30 +625,7 @@ const Profile = () => {
           </a>
         </td>
       </tr>
-      <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-        <td className="w-4 p-4">
-          <div className="flex items-center">
-            <input
-              id="checkbox-table-search-3"
-              type="checkbox"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label htmlFor="checkbox-table-search-3" className="sr-only">
-              checkbox
-            </label>
-          </div>
-        </td>
-        <th
-          scope="row"
-          className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-        >
-          <img
-            className="w-10 h-10 rounded-full"
-            src="/docs/images/people/profile-picture-4.jpg"
-            alt="Jese image"
-          />
-        </th>
-      </tr>
+    
     </tbody>
   </table>
   {/* Edit user modal */}
@@ -1060,8 +990,6 @@ const Profile = () => {
       </div>
     </div>
   </div>
-</>
-
     </>
   )
 }
