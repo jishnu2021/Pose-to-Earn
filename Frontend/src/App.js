@@ -6,6 +6,7 @@ import Introduction from './component/Introduction'
 import { BrowserRouter, Route , Routes} from 'react-router-dom'
 import Form from './component/Form';
 import Profile from './component/Profile'
+import Nftpoints from './component/Nftpoints'
 
 
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='intro' element={<Introduction/>}/>
         <Route path='contact' element={<Form/>}/>
         <Route path='profile' element={<Profile/>}/>
+        <Route path="nft" element={<Nftpoints/>}/>
       </Routes>
       
     </div>

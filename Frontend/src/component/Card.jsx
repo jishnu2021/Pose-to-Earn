@@ -1,15 +1,13 @@
 import React from 'react'
-
-import img1 from "../images/pic1.jpeg"
-import img2 from "../images/pic2.jpeg"
-import img3 from "../images/pic3.jpeg"
-import img4 from "../images/pic4.jpeg"
-
+import img5 from "../images/pic5.jpeg"
+import img6 from "../images/pic6.jpeg"
+import img7 from "../images/pic7.jpeg"
+import img8 from "../images/pic8.jpeg"
 import {useNavigate} from "react-router-dom"
 
 
 
-const Cards = () => {
+const Card = () => {
   const navigate = useNavigate();
 
   const handlechange = ()=>{
@@ -19,7 +17,7 @@ const Cards = () => {
     <div style={{display:"flex"}}>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
   <a href="#">
-    <img className="rounded-t-lg" src={img1} alt="" width={350} height={300}/>
+    <img className="rounded-t-lg" src={img5} alt="" width={350} height={300}/>
   </a>
   <div className="p-5">
     <a href="#">
@@ -58,7 +56,7 @@ const Cards = () => {
 
 <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
   <a href="#">
-    <img className="rounded-t-lg" src={img2} alt="" width={350} height={300}/>
+    <img className="rounded-t-lg" src={img6} alt="" width={350} height={300}/>
   </a>
   <div className="p-5">
     <a href="#">
@@ -97,7 +95,7 @@ const Cards = () => {
 
 <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
   <a href="#">
-    <img className="rounded-t-lg" src={img3} alt="" width={350} height={300}/>
+    <img className="rounded-t-lg" src={img7} alt="" width={350} height={300}/>
   </a>
   <div className="p-5">
     <a href="#">
@@ -136,7 +134,7 @@ const Cards = () => {
 
 <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
   <a href="#">
-    <img className="rounded-t-lg" src={img4} height={200} width={350}/>
+    <img className="rounded-t-lg" src={img8} height={200} width={350}/>
   </a>
   <div className="p-5">
     <a href="#">
@@ -176,4 +174,4 @@ const Cards = () => {
   )
 }
 
-export default Cards
+export default Card
