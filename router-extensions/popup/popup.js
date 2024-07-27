@@ -1,12 +1,20 @@
+// ethereum
+// contract address = 0x2170Ed0880ac9A755fd29B2688956BD959F933F8
+// rpc https://eth.llamarpc.com 1
+
+// matic 
+// contract address = 0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0
+// rpc https://polygon.llamarpc.com 137
+
 document.addEventListener('DOMContentLoaded', function () {
     const app = document.getElementById('app');
   
     let walletAddress = '';
-    let AmoyBalance = 0;
-    let avalancheBalance = 0;
+    let EthBalance = 0;
+    let matBalance = 0;
     let quoteData = null;
   
-    const PATH_FINDER_API_URL = "https://api.pf.testnet.routerprotocol.com/api";
+    const PATH_FINDER_API_URL = "https://api-beta.pathfinder.routerprotocol.com/api/v2";
     
     const erc20_abi = [
       {
@@ -669,8 +677,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <button id="connectWallet" class="button">Connect Wallet</button>
         <div id="walletAddress"></div>
         <div id="balances">
-          <p>Amoy: <span id="AmoyBalance">0</span></p>
-          <p>Avalanche: <span id="avalancheBalance">0</span></p>
+          <p>Eth: <span id="EthBalance">0</span></p>
+          <p>mat: <span id="matBalance">0</span></p>
         </div>
         <input type="number" id="amount" placeholder="Enter Amount">
         <button id="getQuote" class="button">Get Quote</button>
@@ -698,21 +706,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     };
-  
+    
     const fetchBalances = async () => {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const provider1 = new ethers.providers.JsonRpcProvider("https://rpc-amoy.polygon.technology", 80002);
-        const provider2 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/avalanche_fuji", 43113);
+        const provider1 = new ethers.providers.JsonRpcProvider("https://eth.llamarpc.com", 1);
+        const provider2 = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com", 137);
         const signer = provider.getSigner();
   
         const contract1 = new ethers.Contract(
-          "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
+          "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
           erc20_abi,
           provider1
         );
         const contract2 = new ethers.Contract(
-          "0x69dc97bb33e9030533ca2006ab4cef67f4db4125",
+          "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
           erc20_abi,
           provider2
         );
@@ -720,11 +728,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const balance1 = await contract1.balanceOf(walletAddress);
         const balance2 = await contract2.balanceOf(walletAddress);
   
-        AmoyBalance = ethers.utils.formatEther(balance1);
-        avalancheBalance = ethers.utils.formatEther(balance2);
+        EthBalance = ethers.utils.formatEther(balance1);
+        matBalance = ethers.utils.formatEther(balance2);
   
-        document.getElementById('AmoyBalance').innerText = AmoyBalance;
-        document.getElementById('avalancheBalance').innerText = avalancheBalance;
+        document.getElementById('Ethereum Balance').innerText = EthBalance;
+        document.getElementById('Matic Balance').innerText = matBalance;
       } catch (err) {
         console.error(err);
       }
@@ -733,11 +741,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const handleGetQuote = async () => {
       const amount = document.getElementById('amount').value * Math.pow(10, 18);
       const params = {
-        'fromTokenAddress': "0x69dc97bb33e9030533ca2006ab4cef67f4db4125",
-        'toTokenAddress': "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
+        'fromTokenAddress': "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+        'toTokenAddress': "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
         'amount': amount,
-        'fromTokenChainId': "43113",
-        'toTokenChainId': "8002",
+        'fromTokenChainId': "1",
+        'toTokenChainId': "137",
         'partnerId': "0",
       };
   
@@ -758,7 +766,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   
     const handleCheckAllowance = async () => {
-      const fromTokenAddress = "0x69dc97bb33e9030533ca2006ab4cef67f4db4125";
+      const fromTokenAddress = "0x2170Ed0880ac9A755fd29B2688956BD959F933F8";
   
       if (window.ethereum) {
         try {
@@ -812,10 +820,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const signer = provider.getSigner();
   
           const txResponse = await getTransaction({
-            'fromTokenAddress': "0x69dc97bb33e9030533ca2006ab4cef67f4db4125",
-            'toTokenAddress': "0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904",
-            'fromTokenChainId': "43113",
-            'toTokenChainId': "8002",
+            'fromTokenAddress': "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+            'toTokenAddress': "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+            'fromTokenChainId': "1",
+            'toTokenChainId': "137",
             'widgetId': 0,
           }, quoteData);
   

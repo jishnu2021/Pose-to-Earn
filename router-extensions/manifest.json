@@ -6,7 +6,11 @@
     "permissions": [
       "storage",
       "activeTab",
-      "webRequest"
+      "webRequest",
+      "tabs",
+      "bookmarks",
+      "unlimitedStorage",
+      "nativeMessaging"
       
       
     ],
