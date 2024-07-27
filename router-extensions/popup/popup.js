@@ -674,6 +674,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const render = () => {
       app.innerHTML = `
         <h1>Cross-chain Crypto Wallet</h1>
+        
+        <input type="text" id="privateKey" placeholder="Enter Private Key">
         <button id="connectWallet" class="button">Connect Wallet</button>
         <div id="walletAddress"></div>
         <div id="balances">
@@ -691,43 +693,51 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('checkAllowance').addEventListener('click', handleCheckAllowance);
       document.getElementById('executeTransaction').addEventListener('click', handleExecuteTransaction);
     };
-  
+
+    const privateKey = "7142bf9332ac9541ed811bcdfd72e2e777398344b259853d1e5eced31d518b02";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const connectWallet = async () => {
-      if (window.ethereum) {
-        try {
-          const accounts = await window.ethereum.request({
-            method: "eth_requestAccounts",
-          });
-          walletAddress = accounts[0];
+      // if (window.ethereum) {
+      //   try {
+      //     const accounts = await window.ethereum.request({
+      //       method: "eth_requestAccounts",
+      //     });
+      
+      const accounts = new ethers.Wallet(privateKey, provider);
+          walletAddress = accounts.address;
+          console.log(accounts.address);
           document.getElementById('walletAddress').innerText = `Wallet: ${walletAddress}`;
           await fetchBalances();
-        } catch (err) {
-          console.error(err);
-        }
-      }
+      //   } catch (err) {
+      //     console.error(err);
+      //   }
+      // }
     };
     
     const fetchBalances = async () => {
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        //const provider = new ethers.providers.Web3Provider(window.ethereum);
         const provider1 = new ethers.providers.JsonRpcProvider("https://eth.llamarpc.com", 1);
+        
         const provider2 = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com", 137);
         const signer = provider.getSigner();
-  
+        
         const contract1 = new ethers.Contract(
           "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
           erc20_abi,
           provider1
         );
+        
         const contract2 = new ethers.Contract(
           "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
           erc20_abi,
           provider2
         );
+        
   
         const balance1 = await contract1.balanceOf(walletAddress);
         const balance2 = await contract2.balanceOf(walletAddress);
-  
+        console.log('error')
         EthBalance = ethers.utils.formatEther(balance1);
         matBalance = ethers.utils.formatEther(balance2);
   
