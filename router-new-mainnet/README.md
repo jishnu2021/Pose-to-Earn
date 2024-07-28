@@ -5,7 +5,7 @@ This is a chrome extension boilerplate build with react and it support web 3 and
 ## Available Scripts
 
 In the project directory, you can run:
-
+### `npm i`
 ### `npm start`
 
 Runs the app in the development mode.\
