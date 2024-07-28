@@ -15,7 +15,7 @@ Contract Address of Avlanche - 0xB9bE3C9C0869c0b9C084eA6e33FBBAe599F820e6
 
 
 
-If the version [Router Cross-Chain-wallet V1.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/extension)  do not work please try out the  [Router Cross-Chain-wallet V2.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions)
+If the version [Router Cross-Chain-wallet V1.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-extensions)  do not work please try out the  [Router Cross-Chain-wallet V2.0](https://github.com/Mochoye/Pose-to-Earn/tree/main/router-new-mainnet/dist)
 .
 
 ## Features
