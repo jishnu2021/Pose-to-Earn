@@ -7,6 +7,7 @@
 // rpc https://polygon.llamarpc.com 137
 
 document.addEventListener('DOMContentLoaded', function () {
+    const privateKey = "Enter your private key";
     const app = document.getElementById('app');
   
     let walletAddress = '';
@@ -694,7 +695,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('executeTransaction').addEventListener('click', handleExecuteTransaction);
     };
 
-    const privateKey = "7142bf9332ac9541ed811bcdfd72e2e777398344b259853d1e5eced31d518b02";
+    
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const connectWallet = async () => {
       // if (window.ethereum) {
