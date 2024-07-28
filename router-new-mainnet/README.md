@@ -1,6 +1,6 @@
-# Getting Started with chrome-extension-react-metamask-boilerplate
+# Router Nitro Extension mainnet
 
-This is a chrome extension boilerplate build with react and it support web 3 and metamask login so clone it and give a star and save your many gulp hours
+Mainnet Cross-chain wallet
 
 ## Available Scripts
 
