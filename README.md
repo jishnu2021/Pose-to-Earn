@@ -118,6 +118,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 - **Avalanche**: For providing the blockchain infrastructure on the Fuji testnet where our NFTs are minted.
 - **Router Nitro**: For the cross-chain wallet extension that enhances our platform's functionality.
 - **https://github.com/Haripandey21/Nfts-Minting_Dapp**: Took reference from this repo for building the smart contract.
+- **https://github.com/shaheem-khanzada/chrome-extension-react-metamask-boilerplate**: Got a huge help for connecting metamask wallet for extension purpose
 
 Thank you for visiting the Pose-To-Earn repository. Dive in and start earning while you exercise!
 
