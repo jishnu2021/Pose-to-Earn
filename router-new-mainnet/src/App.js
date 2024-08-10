@@ -2,9 +2,7 @@ import React from "react";
 import "./App.css";
 import { useWallet } from "./context/WalletProvider";
 import { useState } from "react";
-const ethers = require("ethers");
-
-import axios from "axios";
+import  ethers  from "./ethers";
 
 
 const PATH_FINDER_API_URL ="https://api-beta.pathfinder.routerprotocol.com/api/v2";
@@ -680,6 +678,7 @@ function App() {
   const handleGetQuote = async () => {
     try {
       // Fetching balances
+      console.log(window.ethereum)
       const provider = new ethers.BrowserProvider(window.ethereum);
       const provider1 = new ethers.providers.JsonRpcProvider(
         rpcUrlToken1,
@@ -731,15 +730,28 @@ function App() {
   const getQuote = async (params) => {
     const endpoint = "v2/quote";
     const quoteUrl = `${PATH_FINDER_API_URL}/${endpoint}`;
-
+  
     try {
-      const res = await axios.get(quoteUrl, { params });
-      return res.data;
-    } catch (e) {
-      console.error(`Fetching quote data from pathfinder: ${e}`);
+      const response = await fetch(quoteUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json', // adjust content-type if necessary
+        },
+        // if params need to be added to the URL, use URLSearchParams
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(`Fetching quote data from pathfinder: ${error.message}`);
       return null;
     }
   };
+  
   const checkAndSetAllowance = async (
     wallet,
     tokenAddress,
@@ -773,7 +785,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Router Nitro Cross Chain wallet</h3>
+        <h3>Crypto Wallet Extension</h3>
         <button
           onClick={isAuthenticated ? disconnectWallet : connectWallet}
           id="wallet-connect"
@@ -826,7 +838,7 @@ function App() {
           onChange={(e) => setAmount(e.target.value)}
         />
         <button onClick={handleGetQuote}>Get Quote</button>
-        <button onClick={handleCheckAllowance}>Check Allowance</button>
+        <button>Check Allowance</button>
         <button>Execute</button>
       </div>
       <div>
