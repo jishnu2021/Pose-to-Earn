@@ -8,19 +8,20 @@ import { ethers } from 'ethers';
 
 
 function App() {
-  const { isAuthenticated, connectWallet, disconnectWallet } = useWallet();
+  const { isAuthenticated, connectWallet, disconnectWallet, getAccounts, getProvider } = useWallet();
   const [token1Address, setToken1Address] = useState("");
   const [token2Address, setToken2Address] = useState("");
   const [rpcUrlToken1, setRpcUrlToken1] = useState("");
   const [rpcUrlToken2, setRpcUrlToken2] = useState("");
   const [chainIdToken1, setChainIdToken1] = useState("");
   const [chainIdToken2, setChainIdToken2] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [token1Balance, setToken1Balance] = useState(null);
   const [token2Balance, setToken2Balance] = useState(null);
   const [quoteData, setQuoteData] = useState(null); // State to store the quote data
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState(null);
+
   const [step1, setStep1] = useState("");
   const [step2, setStep2] = useState("");
   const [step3, setStep3] = useState("");
@@ -30,7 +31,7 @@ function App() {
     const params = {
       fromTokenAddress: '0x4200000000000000000000000000000000000006',
       toTokenAddress: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-      amount: 1000000000000000, // Assuming amount is already in Wei format
+      amount: amount, // Assuming amount is already in Wei format
       fromTokenChainId: 10,
       toTokenChainId: 42161,
       partnerId: 0,
@@ -39,21 +40,19 @@ function App() {
     const data = await getQuote(params);
     setQuoteData(data); // Update state with the fetched quote data
     setStep1("✅");
+    
 
   };
 
 
 const handleCheckAllowance = async (quoteData) => {
-    if (window.ethereum) {
-        console.log('MetaMask detected');
+
         try {
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts",
-            });
+            
             console.log(quoteData);
-            console.log(accounts[0]);
+            
             // const provider = new ethers.providers.JsonRpcProvider("https://optimism.llamarpc.com",10);
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const provider = new ethers.providers.Web3Provider(getProvider());
             const signer = provider.getSigner();
             console.log("Hello ami signer : ",signer)
             await checkAndSetAllowance(
@@ -62,13 +61,12 @@ const handleCheckAllowance = async (quoteData) => {
                 quoteData.allowanceTo, // quote.allowanceTo in getQuote(params) response
                 ethers.constants.MaxUint256 // Approving infinite allowance
             );
+            console.log(getAccounts);
+            console.log(getProvider);
             console.log('Allowance checked and updated ✅');
         } catch (err) {
             console.error('Error:', err);
         }
-    } else {
-        console.error('MetaMask not detected');
-    }
 };
 
 const handleExecute = async () => {
@@ -81,14 +79,18 @@ const handleExecute = async () => {
 		  });
 		  console.log(accounts[0])
 		  const provider = new ethers.providers.Web3Provider(window.ethereum);
+      console.log(provider)
 		  const signer = provider.getSigner();
-		  const txResponse = await getTransaction({
-			'fromTokenAddress': '0x4200000000000000000000000000000000000006',
-			'toTokenAddress': '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-			'fromTokenChainId': "10",
-			'toTokenChainId': "42161", // Fuji
-			'widgetId': 0, 
-		}, quoteData); // params have been defined in step 1 and quoteData has also been fetched in step 1
+      console.log(signer)
+      console.log(quoteData)
+		  const params = {
+        sender_address: accounts[0],
+        receiver_address: accounts[0],
+        refundAddress: accounts[0]
+    };
+    
+    const txResponse = await getTransaction(params, quoteData);
+     // params have been defined in step 1 and quoteData has also been fetched in step 1
 	
 		// sending the transaction using the data given by the pathfinder
 		const tx = await signer.sendTransaction(txResponse.txn)

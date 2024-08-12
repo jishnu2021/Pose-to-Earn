@@ -145,7 +145,9 @@ const WalletProvider = React.memo(({ children }) => {
                 disconnectWallet,
                 connectWallet,
                 isAuthenticated,
-                appLoading
+                appLoading,
+                getAccounts,
+                getProvider
             }}
         >
             {children}
