@@ -21,7 +21,6 @@ function App() {
   const [quoteData, setQuoteData] = useState(null); // State to store the quote data
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState(null);
-
   const [step1, setStep1] = useState("");
   const [step2, setStep2] = useState("");
   const [step3, setStep3] = useState("");
@@ -46,7 +45,7 @@ function App() {
 
 
 const handleCheckAllowance = async (quoteData) => {
-
+      setStep2('')
         try {
             
             console.log(quoteData);
@@ -64,9 +63,11 @@ const handleCheckAllowance = async (quoteData) => {
             console.log(getAccounts);
             console.log(getProvider);
             console.log('Allowance checked and updated ✅');
+            
         } catch (err) {
             console.error('Error:', err);
         }
+        setStep2('✅')
 };
 
 const handleExecute = async () => {
@@ -90,10 +91,12 @@ const handleExecute = async () => {
     };
     
     const txResponse = await getTransaction(params, quoteData);
+    console.log(txResponse)
      // params have been defined in step 1 and quoteData has also been fetched in step 1
 	
 		// sending the transaction using the data given by the pathfinder
 		const tx = await signer.sendTransaction(txResponse.txn)
+    console.log(tx)
 		try {
 			await tx.wait();
 			console.log(`Transaction mined successfully: ${tx.hash}`)
@@ -159,8 +162,8 @@ const handleExecute = async () => {
           onChange={(e) => setChainIdToken2(e.target.value)}
         />
        <input placeholder='Enter Amount' onChange={(e)=>{setAmount(e.target.value*Math.pow(10,18))}}></input>
-        <button onClick={handleGetQuote}>Get Quote</button>
-        <button onClick={() => handleCheckAllowance(quoteData)}>Check Allowance</button> 
+        <button onClick={handleGetQuote}>Get Quote{step1 && <span style={{ marginLeft: '10px' }}>{step1}</span>}</button>
+        <button onClick={() => handleCheckAllowance(quoteData)}>Check Allowance {step2 && <span style={{ marginLeft: '10px' }}>{step2}</span>}</button> 
         <button onClick={handleExecute}>Execute</button>
       </div>
       <div>
